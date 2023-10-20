@@ -1,0 +1,29 @@
+#!/bin/bash
+#SBATCH -p doduo  #Choosing the cluster to run the job
+#PBS -N naive_NN_sim1_1_25 # job name
+#PBS -l nodes=10:ppn=10 # multi-node job, multicore
+#PBS -l walltime=06:00:00 # max. 12h of wall time
+#PBS -l vmem=16gb
+#PBS -m b
+#PBS -m e
+#PBS -m a
+#PBS -M alfred.keter@ugent.be
+
+
+cd $PBS_O_WORKDIR
+
+echo Start Job
+date
+
+module load R/4.2.1-foss-2022a
+
+module load rjags/4-13-foss-2022a-R-4.2.1
+module load dclone/2.3-0-foss-2022a-R-4.2.1
+module load R2jags/0.7-1-foss-2022a-R-4.2.1
+
+
+
+R --file=/kyukon/scratch/gent/438/vsc43892/sim1_naive/vb_sim1_NN_naive1.R
+
+
+echo End Job
